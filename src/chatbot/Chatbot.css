@@ -1,0 +1,105 @@
+/* Container to center everything */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #605f62, #a9aaad); /* Gradient background */
+    padding: 20px;
+    backdrop-filter: blur(10px); /* Transparency effect */
+  }
+  
+  /* Chat card with shadows and rounded edges */
+  .chat-card {
+    max-width: 500px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent card */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(8px); /* Blurring effect */
+  }
+  
+  /* Container for messages */
+  .chat-messages {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding-right: 10px;
+  }
+  
+  /* Common style for all messages */
+  .chat-message {
+    margin-bottom: 12px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 80%;
+    word-wrap: break-word;
+  }
+  
+  /* User message style */
+  .user-message {
+    background-color: #624949; /* Blue color for user messages */
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+  }
+  
+  /* Bot message style */
+  .bot-message {
+    background-color: #cdcfd4; /* Light grey for bot messages */
+    color: #333;
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+  }
+  
+  /* Input container for text input and button */
+  .input-container {
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Fancy text input */
+  input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: border 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  input[type="text"]:focus {
+    border-color: #95a9cb; /* Blue border on focus */
+  }
+  
+  /* Fancy button */
+  button {
+    background-color: #6b5454; /* Blue button */
+    color: white;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  button:hover {
+    background-color: #6a11cb; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+  }
+  
+  button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.8); /* Focus effect */
+  }
+  
+  button:active {
+    transform: scale(1); /* Reset the button size when clicked */
+  }
