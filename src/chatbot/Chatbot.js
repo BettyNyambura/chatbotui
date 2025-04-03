@@ -2,8 +2,8 @@ import { useState } from "react";
 import './Chatbot.css';
 
 export default function Chatbot() {
-  // Define your API endpoint directly in the code
-  const API_ENDPOINT = "https://your-api-gateway-endpoint.amazonaws.com/stage/resource";
+  // Define your actual API endpoint
+  const API_ENDPOINT = "https://t7n3dginr4.execute-api.us-east-1.amazonaws.com/dev/QueryWithPinecone";
   
   const [messages, setMessages] = useState([
     { text: "Hello! How can I help you today?", sender: "bot" }
@@ -23,7 +23,7 @@ export default function Chatbot() {
     setIsLoading(true);
     
     try {
-      // Send request to Lex bot via API Gateway
+      // Send request to Lambda function via API Gateway
       const response = await fetch(API_ENDPOINT, {
         method: 'POST',
         headers: {
