@@ -1,21 +1,71 @@
 import { useState } from "react";
 import './Chatbot.css';
 
-
 export default function Chatbot() {
+  // Define your API endpoint directly in the code
+  const API_ENDPOINT = "https://your-api-gateway-endpoint.amazonaws.com/stage/resource";
+  
   const [messages, setMessages] = useState([
     { text: "Hello! How can I help you today?", sender: "bot" }
   ]);
   const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim()) return;
     
+    // Add user message to chat
     const userMessage = { text: input, sender: "user" };
-    const botResponse = { text: "This is a mock response.", sender: "bot" };
+    setMessages([...messages, userMessage]);
     
-    setMessages([...messages, userMessage, botResponse]);
-    setInput("");
+    const userInput = input;
+    setInput(""); // Clear input field
+    setIsLoading(true);
+    
+    try {
+      // Send request to Lex bot via API Gateway
+      const response = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          inputText: userInput
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      // Add bot response to chat
+      const botResponse = { 
+        text: data.message || "I received your message but I'm not sure how to respond.", 
+        sender: "bot" 
+      };
+      
+      setMessages(prev => [...prev, botResponse]);
+    } catch (err) {
+      console.error("Error communicating with bot:", err);
+      
+      // Add error message as bot response
+      const errorMessage = { 
+        text: "Sorry, I'm having trouble connecting right now. Please try again later.", 
+        sender: "bot" 
+      };
+      
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSend();
+    }
   };
 
   return (
@@ -27,18 +77,27 @@ export default function Chatbot() {
               {msg.text}
             </div>
           ))}
+          {isLoading && (
+            <div className="chat-message bot-message typing-message">
+              <span className="dot"></span>
+              <span className="dot"></span>
+              <span className="dot"></span>
+            </div>
+          )}
         </div>
-        <div className="input-container flex gap-2 mt-4">
+        
+        <div className="input-container">
           <input
-            className="border"
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onKeyPress={handleKeyPress}
             placeholder="Type a message..."
+            disabled={isLoading}
           />
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
             onClick={handleSend}
+            disabled={isLoading || !input.trim()}
           >
             Send
           </button>
@@ -46,6 +105,4 @@ export default function Chatbot() {
       </div>
     </div>
   );
-};
-
-  
+}

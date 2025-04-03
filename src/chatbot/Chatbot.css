@@ -91,7 +91,7 @@
   }
   
   button:hover {
-    background-color: #6a11cb; /* Darker shade on hover */
+    background-color: #2e2538; /* Darker shade on hover */
     transform: scale(1.05); /* Slightly enlarge button on hover */
   }
   
