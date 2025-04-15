@@ -1,3 +1,4 @@
+import ReactMarkdown from 'react-markdown';
 import { useState } from "react";
 import './Chatbot.css';
 
@@ -89,9 +90,12 @@ export default function Chatbot() {
         <div className="chat-messages">
           {messages.map((msg, index) => (
             <div key={index} className={`chat-message ${msg.sender === "user" ? "user-message" : "bot-message"}`}>
-              <pre>
-                {msg.sender === "bot" ? formatBotText(msg.text) : msg.text}
-              </pre>
+              {msg.sender === "bot" ? (
+                <ReactMarkdown>{formatBotText(msg.text)}</ReactMarkdown>
+              ) : (
+                msg.text
+              )}
+              
             </div>
           ))}
           {isLoading && (

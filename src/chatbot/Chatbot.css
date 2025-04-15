@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  font-family: 'Roboto', sans-serif;
+  font-size: 17px;
+}
+
 /* Container to center everything */
 .chat-container {
   display: flex;
@@ -5,20 +12,20 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(135deg, #605f62, #a9aaad); /* Gradient background */
+  background: linear-gradient(135deg, #605f62, #a9aaad);
   padding: 20px;
-  backdrop-filter: blur(10px); /* Transparency effect */
+  backdrop-filter: blur(10px);
 }
 
 /* Chat card with shadows and rounded edges */
 .chat-card {
   max-width: 500px;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent card */
+  background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   padding: 20px;
-  backdrop-filter: blur(8px); /* Blurring effect */
+  backdrop-filter: blur(8px);
 }
 
 /* Container for messages */
@@ -26,9 +33,11 @@
   max-height: 400px;
   overflow-y: auto;
   margin-bottom: 15px;
-  padding-right: 10px;
+  padding: 0 10px;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Common style for all messages */
@@ -36,13 +45,17 @@
   margin-bottom: 12px;
   padding: 10px 15px;
   border-radius: 20px;
-  max-width: 80%;
+  max-width: 90%;
+  width: fit-content;
   word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+ 
 }
 
 /* User message style */
 .user-message {
-  background-color: #624949; /* Blue color for user messages */
+  background-color: #624949;
   color: white;
   align-self: flex-end;
   border-bottom-right-radius: 5px;
@@ -50,10 +63,24 @@
 
 /* Bot message style */
 .bot-message {
-  background-color: #cdcfd4; /* Light grey for bot messages */
+  background-color: #cdcfd4;
   color: #333;
   align-self: flex-start;
   border-bottom-left-radius: 5px;
+}
+
+/* Tighten spacing for markdown inside bot messages */
+.bot-message p,
+.bot-message ul,
+.bot-message li {
+  margin: 4px 0;
+  padding: 0;
+  line-height: 1.4;
+}
+
+/* Optional: Remove left padding on bullet points */
+.bot-message ul {
+  padding-left: 20px;
 }
 
 /* Input container for text input and button */
@@ -76,7 +103,7 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-  border-color: #95a9cb; /* Blue border on focus */
+  border-color: #95a9cb;
 }
 
 input[type="text"]:disabled {
@@ -86,7 +113,7 @@ input[type="text"]:disabled {
 
 /* Fancy button */
 button {
-  background-color: #6b5454; /* Blue button */
+  background-color: #6b5454;
   color: white;
   padding: 12px 25px;
   font-size: 16px;
@@ -98,17 +125,17 @@ button {
 }
 
 button:hover {
-  background-color: #e4dbed; /* Darker shade on hover */
-  transform: scale(1.05); /* Slightly enlarge button on hover */
+  background-color: #34293a;
+  transform: scale(1.05);
 }
 
 button:focus {
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.8); /* Focus effect */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.8);
 }
 
 button:active {
-  transform: scale(1); /* Reset the button size when clicked */
+  transform: scale(1);
 }
 
 button:disabled {
