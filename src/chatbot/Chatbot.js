@@ -40,7 +40,7 @@ export default function Chatbot() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           query: input,
-          history: updatedHistory // 👈 Send history to Lambda
+          history: updatedHistory, // 👈 Send history to Lambda
           session_id: sessionId // 👈 include session_id heres
         })
       });
