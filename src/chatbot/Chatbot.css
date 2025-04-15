@@ -125,8 +125,8 @@ button {
 }
 
 button:hover {
-  background-color: #34293a;
-  transform: scale(1.05);
+  background-color: #34293a; /* Darker shade on hover */
+  transform: scale(1.05); /* Slightly enlarge button on hover */
 }
 
 button:focus {
