@@ -50,8 +50,7 @@ export default function Chatbot() {
         throw new Error(`HTTP error ${response.status}`);
       }
 
-      const raw = await response.json();
-      const data = JSON.parse(raw.body);
+      const data = await response.json();
 
       const botText = data.answer || "I received your message but I'm not sure how to respond.";
       const botMessage = { text: botText, sender: "bot" };
