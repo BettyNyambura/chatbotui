@@ -14,7 +14,7 @@ function getSessionId() {
 const sessionId = getSessionId(); // 👈 Called once on load
 
 export default function Chatbot() {
-  const API_ENDPOINT = "https://t7n3dginr4.execute-api.us-east-1.amazonaws.com/prod/QueryWithPinecone";
+  const API_ENDPOINT = "https://t7n3dginr4.execute-api.us-east-1.amazonaws.com/dev/QueryWithPinecone";
   
   const [messages, setMessages] = useState([
     { text: "Hello! How can I help you today?", sender: "bot" }
